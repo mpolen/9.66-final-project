@@ -67,6 +67,12 @@ def prediction(X_test, clf_object):
     y_pred = clf_object.predict(X_test)
     print("Predicted values:")
     print(y_pred)
+
+    y_prob = clf_object.predict_proba(X_test)
+    print("Predicted probabilities:")
+    print(np.array(['always_4', 'bias_4', 'fair', 'only_2_or_3']))
+    print(y_prob)
+    
     return y_pred
       
 # Function to calculate accuracy
@@ -89,11 +95,12 @@ def main():
 # fair:  [1, 3, 4, 4, 1, 3, 2, 3]
 # only_2_or_3:  [3, 3, 3, 3, 2, 2, 2, 3]
     
-    X_test = np.array([[ 4, 4, 4, 4, 4, 4, 4, 2],
+    X_test = np.array([[1, 3, 4, 4, 1, 3, 2, 3],
+                        [4, 4, 4, 4, 4, 4, 4, 2],
                         [4, 4, 4, 4, 4, 4, 4, 4],
-                        [1, 3, 4, 4, 1, 3, 2, 3],
                         [3, 3, 3, 3, 2, 2, 2, 3]])
-    y_test = np.array(['bias_4', 'always_4', 'fair', 'only_2_or_3'])
+
+    y_test = np.array(['fair', 'bias_4', 'always_4', 'only_2_or_3'])
     # Building Phase
     data = importdata()
     X, Y, X_train, _, y_train, _ = splitdataset(data)
@@ -102,8 +109,6 @@ def main():
       
     # Operational Phase
     print("Results Using Gini Index:")
-      
-
     # Prediction using gini
     y_pred_gini = prediction(X_test, clf_gini)
     cal_accuracy(y_test, y_pred_gini)

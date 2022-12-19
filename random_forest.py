@@ -1,6 +1,6 @@
 import numpy as np
 import pandas as pd
-from sklearn.neighbors import KNeighborsClassifier
+from sklearn.ensemble import RandomForestClassifier
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import accuracy_score
 from sklearn.metrics import classification_report
@@ -35,7 +35,7 @@ def splitdataset(balance_data):
 
 def createAndTrainModel(X_train, y_train):
 
-    knn_model = KNeighborsClassifier(n_neighbors=3, weights='distance')
+    knn_model = RandomForestClassifier()
     knn_model.fit(X_train, y_train)
 
     return knn_model
