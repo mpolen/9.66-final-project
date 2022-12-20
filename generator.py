@@ -82,10 +82,10 @@ for i in range(250):
     out = np.vstack([out, np.array(result_fair)])
     out = np.vstack([out, np.array(result_only_2_or_3)])
 
-print(out)
+print(out[:4,:])
 np.random.shuffle(out)
 
-print(out)
+# print(out)
 
-np.savetxt("data.csv", out, delimiter=",", fmt='%s')
+# np.savetxt("data.csv", out, delimiter=",", fmt='%s')
 

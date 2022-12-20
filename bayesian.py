@@ -47,7 +47,7 @@ def plot_sequence(user_values, die_sequence, a, b, title):
         score = logistic_function(a, b, log_posterior_ratio(p_seq_given_fair, p_seq_given_weighted))
         score = score * 7 #scaled to 1-7 score
         predicted_scores.append(score)
-
+    print("predicted scores: ", predicted_scores)
     coins = np.array([i+1 for i in range(4)])
     correlation = np.corrcoef(np.array(predicted_scores), np.array(user_values))
     print(title, "Correlation: \n", correlation)
@@ -69,14 +69,13 @@ if __name__ == '__main__':
     die_sequence = [(2, 1, 3, 2), (0, 1, 0, 7), (0, 0, 0, 8), (0, 3, 5, 0)]
 
     # Cover Story 1
-    user_responses_cover_1 = [6.021276596, 2.723404255, 2.085106383, 3.765957447]
-    plot_sequence(user_responses_cover_1, die_sequence, .1, .0001, 'Cover Story 1')
+    # user_responses_cover_1 = [6.021276596, 2.723404255, 2.085106383, 3.765957447]
+    # plot_sequence(user_responses_cover_1, die_sequence, .1, .0001, 'Cover Story 1')
 
 
     # Cover Story 2
-    # TODO input user data here: 
-    # user_responses_cover_2 = [5.617021277, 2.489361702, 1.829787234, 3.106382979]
-    # plot_sequence(user_responses_cover_2, die_sequence, .3, .1, 'Cover Story 2')
+    user_responses_cover_2 = [5.617021277, 2.489361702, 1.829787234, 3.106382979]
+    plot_sequence(user_responses_cover_2, die_sequence, .3, .1, 'Cover Story 2')
     # total = 0
     # for i in range(100):
     #     for j in range(i,100):

@@ -1,7 +1,6 @@
-# Run this program on your local python
-# interpreter, provided you have installed
-# the required libraries.
-  
+# Based on code from: https://www.geeksforgeeks.org/decision-tree-implementation-python/
+
+
 # Importing the required packages
 import numpy as np
 import pandas as pd
@@ -95,15 +94,15 @@ def main():
 # fair:  [1, 3, 4, 4, 1, 3, 2, 3]
 # only_2_or_3:  [3, 3, 3, 3, 2, 2, 2, 3]
     
-    X_test = np.array([[1, 3, 4, 4, 1, 3, 2, 3],
-                        [4, 4, 4, 4, 4, 4, 4, 2],
-                        [4, 4, 4, 4, 4, 4, 4, 4],
-                        [3, 3, 3, 3, 2, 2, 2, 3]])
+    # X_test = np.array([[1, 3, 4, 4, 1, 3, 2, 3],
+    #                     [4, 4, 4, 4, 4, 4, 4, 2],
+    #                     [4, 4, 4, 4, 4, 4, 4, 4],
+    #                     [3, 3, 3, 3, 2, 2, 2, 3]])
 
-    y_test = np.array(['fair', 'bias_4', 'always_4', 'only_2_or_3'])
+    # y_test = np.array(['fair', 'bias_4', 'always_4', 'only_2_or_3'])
     # Building Phase
     data = importdata()
-    X, Y, X_train, _, y_train, _ = splitdataset(data)
+    X, Y, X_train, X_test, y_train, y_test = splitdataset(data)
     clf_gini = train_using_gini(X_train, y_train)
     clf_entropy = train_using_entropy(X_train, y_train)
       

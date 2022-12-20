@@ -1,7 +1,10 @@
 # Based on code from: https://www.geeksforgeeks.org/decision-tree-implementation-python/
 
+
 import numpy as np
 import pandas as pd
+from sklearn.neighbors import KNeighborsClassifier
+from sklearn.tree import DecisionTreeClassifier
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import accuracy_score
@@ -11,7 +14,7 @@ from sklearn.metrics import classification_report
 
 
 def importdata():
-    balance_data = pd.read_csv('data.data')
+    balance_data = pd.read_csv('human_data_story_2.data')
       
     # Printing the dataswet shape
     print ("Dataset Length: ", len(balance_data))
@@ -74,18 +77,25 @@ def main():
       
     # Operational Phase      
       
-    print("Results Using RF on Test Data:")
+    print("Results Using KNN on Test Data:")
     # Prediction using knn
     y_pred = prediction(X_test, knn)[0]
     cal_accuracy(y_test, y_pred)
 
-    X_test = np.array([[1, 3, 4, 4, 1, 3, 2, 3],
-                        [4, 4, 4, 4, 4, 4, 4, 2],
-                        [4, 4, 4, 4, 4, 4, 4, 4],
-                        [3, 3, 3, 3, 2, 2, 2, 3]])
+    # X_test = np.array([['always_4' '4' '4' '4' '4' '4' '4' '4' '4']
+#  ['bias_4' '4' '4' '4' '3' '4' '4' '4' '4']
+#  ['fair' '3' '4' '2' '2' '2' '1' '1' '3']
+#  ['only_2_or_3' '3' '2' '2' '2' '3' '3' '2' '2']])
 
-    y_test = np.array(['fair', 'bias_4', 'always_4', 'only_2_or_3'])
-    print("Results Using RF on 4 sequences:")
+    X_test = np.array([[4, 4, 4, 4, 4, 4, 4, 4],
+                        [4, 4, 4, 3, 4, 4, 4, 4],
+                        [3, 4, 2, 2, 2, 1, 1, 3],
+                        [3, 2, 2, 2, 3, 3, 2, 2]])
+
+    # y_test = np.array(['always_4', 'bias_4', 'fair', 'only_2_or_3'])
+    y_test = np.array([1, 0, 0, 0])
+
+    print("Results Using KNN on 4 sequences:")
     # # Prediction using knn
     y_pred = prediction(X_test, knn)[0]
     cal_accuracy(y_test, y_pred)
@@ -94,3 +104,7 @@ def main():
 # Calling main function
 if __name__=="__main__":
     main()
+    #cover story 2: 
+    # knn:[2 2 2 2]
+    #tree:[1 1 3 2]
+    #forest:[1 1 3 3]
